@@ -1,0 +1,27 @@
+=== QUICK SORT - Package Weight Sorting ===
+Author: Sabari Nadh K
+Original order:
+P1(20) P2(15) P3(20) P4(10) P5(15) P6(20) P7(25) P8(10) 
+
+Intermediate Steps:
+  Step 1: Pivot = P8(10) [low=0 high=7]
+  After partition: P8(10) P2(15) P3(20) P4(10) P5(15) P6(20) P7(25) P1(20) 
+  Step 2: Pivot = P1(20) [low=1 high=7]
+  After partition: P8(10) P2(15) P4(10) P5(15) P6(20) P1(20) P7(25) P3(20) 
+  Step 3: Pivot = P5(15) [low=1 high=4]
+  After partition: P8(10) P2(15) P4(10) P5(15) P6(20) P1(20) P7(25) P3(20) 
+  Step 4: Pivot = P4(10) [low=1 high=2]
+  After partition: P8(10) P4(10) P2(15) P5(15) P6(20) P1(20) P7(25) P3(20) 
+  Step 5: Pivot = P3(20) [low=5 high=7]
+  After partition: P8(10) P4(10) P2(15) P5(15) P6(20) P1(20) P3(20) P7(25) 
+  Step 6: Pivot = P1(20) [low=5 high=6]
+  After partition: P8(10) P4(10) P2(15) P5(15) P6(20) P1(20) P3(20) P7(25) 
+
+Final Sorted (by weight):
+P8(10) P4(10) P2(15) P5(15) P6(20) P1(20) P3(20) P7(25) 
+Total comparisons: 21
+
+Stability Check (Quick Sort is NOT stable):
+Weight 10: order -> P8 P4   [ORIGINAL ORDER LOST - P4 should be before P8]
+Weight 15: order -> P2 P5
+Weight 20: order -> P6 P1 P3 [ORDER CHANGED]

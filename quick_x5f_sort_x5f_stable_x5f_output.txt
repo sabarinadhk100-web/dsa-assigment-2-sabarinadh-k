@@ -1,0 +1,15 @@
+=== STABLE QUICK SORT (Modified) ===
+Author: Sabari Nadh K
+Original order:
+P1(20) P2(15) P3(20) P4(10) P5(15) P6(20) P7(25) P8(10) 
+
+Sorting with stability condition: if weight equal, smaller ID first
+
+Final Sorted (Stable by ID):
+P4(10) P8(10) P2(15) P5(15) P1(20) P3(20) P6(20) P7(25) 
+Total comparisons: 22
+
+Verification using Package IDs:
+Weight 10: Original P4,P8 -> Sorted: P4 P8  [RETAINED]
+Weight 15: Original P2,P5 -> Sorted: P2 P5  [RETAINED]
+Weight 20: Original P1,P3,P6 -> Sorted: P1 P3 P6  [RETAINED]

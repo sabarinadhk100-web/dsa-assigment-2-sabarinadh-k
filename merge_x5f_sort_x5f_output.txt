@@ -1,0 +1,29 @@
+=== MERGE SORT - Package Weight Sorting ===
+Author: Sabari Nadh K
+Original order:
+P1(20) P2(15) P3(20) P4(10) P5(15) P6(20) P7(25) P8(10) 
+
+Intermediate Steps:
+  Merging: P1(20) | P2(15) 
+  -> Result: P2(15) P1(20) 
+  Merging: P3(20) | P4(10) 
+  -> Result: P4(10) P3(20) 
+  Merging: P2(15) P1(20) | P4(10) P3(20) 
+  -> Result: P4(10) P2(15) P1(20) P3(20) 
+  Merging: P5(15) | P6(20) 
+  -> Result: P5(15) P6(20) 
+  Merging: P7(25) | P8(10) 
+  -> Result: P8(10) P7(25) 
+  Merging: P5(15) P6(20) | P8(10) P7(25) 
+  -> Result: P8(10) P5(15) P6(20) P7(25) 
+  Merging: P4(10) P2(15) P1(20) P3(20) | P8(10) P5(15) P6(20) P7(25) 
+  -> Result: P4(10) P8(10) P2(15) P5(15) P1(20) P3(20) P6(20) P7(25) 
+
+Final Sorted (by weight):
+P4(10) P8(10) P2(15) P5(15) P1(20) P3(20) P6(20) P7(25) 
+Total comparisons: 18
+
+Stability Check: Same weight packages retain their original relative order?
+Weight 10: P4 before P8? -> In result: P4 P8 
+Weight 15: P2 before P5? -> P2 P5 
+Weight 20: P1,P3,P6 order? -> P1 P3 P6 

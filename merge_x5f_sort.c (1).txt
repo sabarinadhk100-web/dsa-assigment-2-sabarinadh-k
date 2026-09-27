@@ -1,0 +1,81 @@
+/*
+ * DSA Assignment 2 - Q10 a) Merge Sort
+ * Author: Sabari Nadh K
+ * Logistics packages with weights: 20,15,20,10,15,20,25,10
+ * Each package has unique ID P1..P8
+ */
+#include <stdio.h>
+
+typedef struct {
+    int id; // 1..8 => P1..P8
+    int weight;
+} Package;
+
+long comparisons = 0;
+
+void printPackages(Package arr[], int n) {
+    for(int i=0;i<n;i++) printf("P%d(%d) ", arr[i].id, arr[i].weight);
+    printf("\n");
+}
+
+void merge(Package arr[], int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    Package L[10], R[10];
+    for(int i=0;i<n1;i++) L[i]=arr[l+i];
+    for(int j=0;j<n2;j++) R[j]=arr[m+1+j];
+    
+    int i=0,j=0,k=l;
+    printf("  Merging: ");
+    for(int x=0;x<n1;x++) printf("P%d(%d) ", L[x].id, L[x].weight);
+    printf("| ");
+    for(int x=0;x<n2;x++) printf("P%d(%d) ", R[x].id, R[x].weight);
+    printf("\n");
+
+    while(i<n1 && j<n2){
+        comparisons++;
+        if(L[i].weight <= R[j].weight){ // <= keeps stable
+            arr[k++]=L[i++];
+        } else {
+            arr[k++]=R[j++];
+        }
+    }
+    while(i<n1) arr[k++]=L[i++];
+    while(j<n2) arr[k++]=R[j++];
+    
+    printf("  -> Result: ");
+    for(int x=l;x<=r;x++) printf("P%d(%d) ", arr[x].id, arr[x].weight);
+    printf("\n");
+}
+
+void mergeSort(Package arr[], int l, int r){
+    if(l<r){
+        int m = (l+r)/2;
+        mergeSort(arr,l,m);
+        mergeSort(arr,m+1,r);
+        merge(arr,l,m,r);
+    }
+}
+
+int main(){
+    Package arr[8] = {{1,20},{2,15},{3,20},{4,10},{5,15},{6,20},{7,25},{8,10}};
+    int n=8;
+    printf("=== MERGE SORT - Package Weight Sorting ===\n");
+    printf("Author: Sabari Nadh K\n");
+    printf("Original order:\n");
+    printPackages(arr,n);
+    printf("\nIntermediate Steps:\n");
+    mergeSort(arr,0,n-1);
+    printf("\nFinal Sorted (by weight):\n");
+    printPackages(arr,n);
+    printf("Total comparisons: %ld\n", comparisons);
+    printf("\nStability Check: Same weight packages retain original ID order?\n");
+    printf("Weight 10: P4 before P8? -> In result: ");
+    for(int i=0;i<n;i++) if(arr[i].weight==10) printf("P%d ", arr[i].id);
+    printf("\nWeight 15: P2 before P5? -> "); 
+    for(int i=0;i<n;i++) if(arr[i].weight==15) printf("P%d ", arr[i].id);
+    printf("\nWeight 20: P1,P3,P6 order? -> ");
+    for(int i=0;i<n;i++) if(arr[i].weight==20) printf("P%d ", arr[i].id);
+    printf("\n");
+    return 0;
+}
